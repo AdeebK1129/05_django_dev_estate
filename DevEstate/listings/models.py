@@ -4,6 +4,8 @@ from django.db import models
 
 from django.db import models
 
+from django.db import models
+
 class Property(models.Model):
     zpid = models.IntegerField(primary_key=True)
     street_address = models.CharField(max_length=255)
@@ -11,24 +13,24 @@ class Property(models.Model):
     state = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    living_area = models.IntegerField()
-    bedrooms = models.IntegerField()
-    bathrooms = models.IntegerField()
-    year_built = models.IntegerField()
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    living_area = models.IntegerField(null=True)
+    bedrooms = models.IntegerField(null=True)
+    bathrooms = models.IntegerField(null=True)
+    year_built = models.IntegerField(null=True)
     price = models.DecimalField(max_digits=19, decimal_places=2)
-    date_posted = models.DateTimeField()
+    date_posted = models.DateTimeField(null=True)
     date_sold = models.DateTimeField(null=True, blank=True)
-    home_type = models.CharField(max_length=255)
-    property_tax_rate = models.DecimalField(max_digits=5, decimal_places=2)
-    time_on_zillow = models.CharField(max_length=255)
-    home_status = models.CharField(max_length=255)
-    annual_homeowners_insurance = models.DecimalField(max_digits=19, decimal_places=2)
-    rent_zestimate = models.DecimalField(max_digits=19, decimal_places=2)
+    home_type = models.CharField(max_length=255, null=True)
+    property_tax_rate = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+    time_on_zillow = models.CharField(max_length=255, null=True)
+    home_status = models.CharField(max_length=255, null=True)
+    annual_homeowners_insurance = models.DecimalField(max_digits=19, decimal_places=2, null=True)
+    rent_zestimate = models.DecimalField(max_digits=19, decimal_places=2, null=True)
     brokerage_name = models.CharField(max_length=255, null=True, blank=True)
-    page_view_count = models.IntegerField()
-    description = models.TextField()
+    page_view_count = models.IntegerField(null=True)
+    description = models.TextField(null=True)
 
 class PropertyFeatures(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
@@ -38,35 +40,35 @@ class PropertyFeatures(models.Model):
     garage_spaces = models.IntegerField(null=True, blank=True)
     parking_spaces = models.IntegerField(null=True, blank=True)
     view_type = models.CharField(max_length=255, null=True, blank=True)
-    water_view = models.BooleanField(default=False)
+    water_view = models.BooleanField(null=True, blank=True)
     heating = models.CharField(max_length=255, null=True, blank=True)
     cooling = models.CharField(max_length=255, null=True, blank=True)
     construction_materials = models.CharField(max_length=255, null=True, blank=True)
     roof_type = models.CharField(max_length=255, null=True, blank=True)
-    lot_size = models.DecimalField(max_digits=19, decimal_places=2, null=True, blank=True)
-    hoa_fee = models.DecimalField(max_digits=19, decimal_places=2, null=True, blank=True)
+    lot_size = models.CharField(max_length=255, null=True, blank=True)
+    hoa_fee = models.CharField(max_length=255, null=True)
 
 class Agent(models.Model):
-    display_name = models.CharField(max_length=255)
-    review_count = models.IntegerField()
-    rating_average = models.DecimalField(max_digits=3, decimal_places=2)
-    phone_number = models.CharField(max_length=255)
-    image_url = models.CharField(max_length=255)
-    badge_type = models.CharField(max_length=255)
+    display_name = models.CharField(max_length=255, null=True)
+    review_count = models.IntegerField(null=True)
+    rating_average = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    phone_number = models.CharField(max_length=255, null=True)
+    image_url = models.CharField(max_length=255, null=True)
+    badge_type = models.CharField(max_length=255, null=True)
 
 class PropertyAgent(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
 
 class School(models.Model):
-    name = models.CharField(max_length=255)
-    rating = models.IntegerField()
-    students_per_teacher = models.IntegerField()
-    size = models.IntegerField()
-    level = models.CharField(max_length=255)
-    grades = models.CharField(max_length=255)
-    type = models.CharField(max_length=255)
-    distance = models.DecimalField(max_digits=5, decimal_places=2)
+    name = models.CharField(max_length=255, null=True)
+    rating = models.IntegerField(null=True)
+    students_per_teacher = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
+    level = models.CharField(max_length=255, null=True)
+    grades = models.CharField(max_length=255, null=True)
+    type = models.CharField(max_length=255, null=True)
+    distance = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
 class PropertySchool(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
@@ -74,16 +76,17 @@ class PropertySchool(models.Model):
 
 class PriceHistory(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    date = models.DateTimeField()
-    event = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=19, decimal_places=2)
-    price_per_square_foot = models.DecimalField(max_digits=19, decimal_places=2)
+    date = models.DateTimeField(null=True)
+    event = models.CharField(max_length=255, null=True)
+    price = models.DecimalField(max_digits=19, decimal_places=2, null=True)
+    price_per_square_foot = models.DecimalField(max_digits=19, decimal_places=2, null=True)
 
 class NearbyHomes(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     zpid = models.IntegerField()
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    price = models.DecimalField(max_digits=19, decimal_places=2)
-    home_type = models.CharField(max_length=255)
-    home_status = models.CharField(max_length=255)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    price = models.DecimalField(max_digits=19, decimal_places=2, null=True)
+    home_type = models.CharField(max_length=255, null=True)
+    home_status = models.CharField(max_length=255, null=True)
+   
