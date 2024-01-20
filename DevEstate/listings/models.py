@@ -1,13 +1,8 @@
 from django.db import models
 
-# Create your models here.
-
-from django.db import models
-
-from django.db import models
-
 class Property(models.Model):
     zpid = models.IntegerField(primary_key=True)
+    imgSrc = models.CharField(max_length=255, null=True)
     street_address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
@@ -31,6 +26,9 @@ class Property(models.Model):
     brokerage_name = models.CharField(max_length=255, null=True, blank=True)
     page_view_count = models.IntegerField(null=True)
     description = models.TextField(null=True)
+
+    def __str__(self):
+        return f"[{self.zpid}, {self.imgSrc}]"
 
 class PropertyFeatures(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
