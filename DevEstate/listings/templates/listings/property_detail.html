@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <!-- Property Image Column -->
+    <div class="col-md-6">
+      <img src="{{ property.imgSrc }}" class="img-fluid" alt="Property Image" style="object-fit: cover; height: 100%; width: 100%;">
+    </div>
+    <!-- Property Description Column -->
+    <div class="col-md-6">
+      <h2>{{ property.street_address }}</h2>
+      <h3>{{ property.price }}</h3>
+      <p>{{ property.description }}</p>
+    </div>
+  </div>
+  <br>
+
+    <!-- Property Details Section -->
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Overview</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Street Address:</strong> {{ property.street_address }}</p>
+            <p><strong>City:</strong> {{ property.city }}</p>
+            <p><strong>State:</strong> {{ property.state }}</p>
+            <p><strong>Zipcode:</strong> {{ property.zipcode }}</p>
+            <p><strong>Country:</strong> {{ property.country }}</p>
+            <p><strong>Latitude:</strong> {{ property.latitude }}</p>
+            <p><strong>Longitude:</strong> {{ property.longitude }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Living Area:</strong> {{ property.living_area }}</p>
+            <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+            <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+            <p><strong>Year Built:</strong> {{ property.year_built }}</p>
+            <p><strong>Price:</strong> ${{ property.price }}</p>
+            <p><strong>Date Posted:</strong> {{ property.date_posted }}</p>
+            <p><strong>Date Sold:</strong> {{ property.date_sold }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Home Type:</strong> {{ property.home_type }}</p>
+            <p><strong>Property Tax Rate:</strong> {{ property.property_tax_rate }}</p>
+            <p><strong>Time on Zillow:</strong> {{ property.time_on_zillow }}</p>
+            <p><strong>Home Status:</strong> {{ property.home_status }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Annual Homeowners Insurance:</strong> ${{ property.annual_homeowners_insurance }}</p>
+            <p><strong>Rent Zestimate:</strong> ${{ property.rent_zestimate }}</p>
+            <p><strong>Brokerage Name:</strong> {{ property.brokerage_name }}</p>
+            <p><strong>Page View Count:</strong> {{ property.page_view_count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Features Section -->
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Property Features</h2>
+      </div>
+      <div class="card-body">
+        {% if property_features %}
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Flooring:</strong> {{ property_features.flooring }}</p>
+              <p><strong>Foundation Details:</strong> {{ property_features.foundation_details }}</p>
+              <p><strong>Accessibility Features:</strong> {{ property_features.accessibility_features }}</p>
+              <p><strong>Garage Spaces:</strong> {{ property_features.garage_spaces }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Parking Spaces:</strong> {{ property_features.parking_spaces }}</p>
+              <p><strong>View Type:</strong> {{ property_features.view_type }}</p>
+              <p><strong>Water View:</strong> {{ property_features.water_view | yesno:"Yes,No" }}</p>
+              <p><strong>Heating:</strong> {{ property_features.heating }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Cooling:</strong> {{ property_features.cooling }}</p>
+              <p><strong>Construction Materials:</strong> {{ property_features.construction_materials }}</p>
+              <p><strong>Roof Type:</strong> {{ property_features.roof_type }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Lot Size:</strong> {{ property_features.lot_size }}</p>
+              <p><strong>HOA Fee:</strong> {{ property_features.hoa_fee }}</p>
+            </div>
+          </div>
+        {% else %}
+          <p>No property features available.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Agents Section -->
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Contact Agents</h2>
+      </div>
+      <div class="card-body">
+        {% for property_agent in property_agents %}
+          <div class="media mb-3">
+            <img src="{{ property_agent.agent.image_url }}" class="mr-3" alt="Agent Image" style="width: 64px; height: 64px;">
+            <div class="media-body">
+              <h5 class="mt-0">{{ property_agent.agent.display_name }}</h5>
+              <p>
+                Reviews: {{ property_agent.agent.review_count }}<br>
+                Average Rating: {{ property_agent.agent.rating_average }}<br>
+                Phone Number: {{ property_agent.agent.phone_number }}<br>
+                Badge Type: {{ property_agent.agent.badge_type }}<br>
+              </p>
+            </div>
+          </div>
+        {% empty %}
+          <p>No agents information available.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Nearby Schools Section -->
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Nearby schools</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          {% for property_school in property_schools %}
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">{{ property_school.school.name }}</h5>
+                  <p class="card-text">
+                    Rating: {{ property_school.school.rating }}<br>
+                    Grades: {{ property_school.school.grades }}<br>
+                    Distance: {{ property_school.school.distance }} mi<br>
+                    Type: {{ property_school.school.type }}<br>
+                    Students Per Teacher: {{ property_school.school.students_per_teacher }}<br>
+                    School Size: {{ property_school.school.size }}<br>
+                    School Level: {{ property_school.school.level }}<br>
+                    Grades: {{ property_school.school.grades }}<br>
+                    School Type: {{ property_school.school.type }}<br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col">
+              <p>No nearby schools information available.</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Price History Section -->
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Price History</h2>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Event</th>
+              <th scope="col">Price</th>
+              <th scope="col">Price per Square Foot</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for history in price_history %}
+            <tr>
+              <td>{{ history.date|date:"Y-m-d" }}</td>
+              <td>{{ history.event }}</td>
+              <td>${{ history.price }}</td>
+              <td>${{ history.price_per_square_foot }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">No price history available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+   
+  
+</div>
+{% endblock %}
