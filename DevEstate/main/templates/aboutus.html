@@ -1,30 +1,139 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
+     {% block head %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Agents</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .h1 {
+          color: white;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .agent-header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .agent-header h1 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .agent-header p {
+            font-style: italic;
+            color: #555;
+        }
+
+        .agents-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .agent-card {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(50% - 20px);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .agent-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .agent-name {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .agent-title {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .agents-row {
+                flex-direction: column;
+            }
+            .agent-card {
+                width: 100%;
+            }
+        }
+    </style>
+ {% endblock head %}
+
 </head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Our Agents</h1>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia velit a feugiat finibus. Morbi iaculis diam id tellus iaculis, eu pretium metus fermentum.</p>
-        <div class="row">
-            <!-- Agent 1 -->
-            <div class="col-md-6 col-lg-3">
-                <div class="agent-card">
-                    <img src="path_to_image" alt="Robert Hendz" class="agent-photo">
-                    <h3>Robert Hendz</h3>
-                    <p class="agent-title">Commercial Real Estate Agent</p>
-                    <!-- Agent details here -->
-                </div>
+<body style="background-color: black; color: black; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; text-align: center;">
+    <div class="container">
+        <header class="agent-header">
+          <br>
+            <h1 style="color:white; font-family:Verdana;">Our Agents</h1>
+            <p style="color:white; font-family:Courier;">Please use our referral when buying your next house</p>
+        </header>
+        {% load static %}
+        
+        <div class="agents-row">
+            <div class="agent-card">
+               <img src="{% static 'image/adeeb.png' %}" alt="Adeeb Khan">
+                <div class="agent-name"> Adeeb Khan</div>
+                <div class="agent-title">Real Estate Agent</div>
+                <p> Cornell '28</p>
             </div>
-            <!-- Repeat for other agents -->
+
+            <div class="agent-card">
+               <img src="{% static 'image/john.png' %}" alt="John Chandler iii">
+               <div class="agent-name"> John Chandler iii</div>
+               <div class="agent-title">Real Estate Agent</div>
+               <p> Jollibees Enthusiast</p>
+           </div>
+
+           <div class="agent-card">
+               <img src="{% static 'image/jason.png' %}" alt="Jason Lei">
+               <div class="agent-name"> Jason Lei</div>
+               <div class="agent-title">Real Estate Agent</div>
+               <p> CS Dojo Senpai</p>
+           </div>
+
+           <div class="agent-card">
+               <img src="{% static 'image/sam.png' %}" alt="Samuel Li">
+              <div class="agent-name"> Samuel Li</div>
+              <div class="agent-title">Real Estate Agent</div>
+              <p> He likes cats</p>
+          </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <main>
+     {% block content %}{% endblock %}
+ </main>
+
 </body>
 </html>
