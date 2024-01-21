@@ -81,10 +81,18 @@ class PriceHistory(models.Model):
 
 class NearbyHomes(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    zpid = models.IntegerField()
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    zpid = models.IntegerField(primary_key=True)
+    imgSrc = models.CharField(max_length=255, null=True)
+    street_address = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=255, null=True)
+    zipcode = models.CharField(max_length=255, null=True)
+    country = models.CharField(max_length=255, null=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    living_area = models.IntegerField(null=True)  
     price = models.DecimalField(max_digits=19, decimal_places=2, null=True)
     home_type = models.CharField(max_length=255, null=True)
     home_status = models.CharField(max_length=255, null=True)
-   
+
+
