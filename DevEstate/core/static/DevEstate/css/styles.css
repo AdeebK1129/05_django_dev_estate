@@ -1,0 +1,32 @@
+.header_title {
+     text-align:center;
+     padding: 10px;
+     font-size: 10em;
+     color: #000000;
+}
+
+.subheader_title {
+     padding: 2px;
+     font-size: 1em;
+     color: #000056;
+}
+.center {
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     width: 50%;
+}
+.table {
+     border-collapse: collapse;
+     width: 100%;
+}  
+.th, td {
+     border: 1px solid black;
+     padding: 8px;
+     text-align: left;
+     background-color: #f2f2f2;
+}
+
+.h1 {
+     text-align: center;
+}
