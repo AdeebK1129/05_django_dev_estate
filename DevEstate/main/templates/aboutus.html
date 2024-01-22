@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+    {{ block.super }}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+            }
+    
+            .h1 {
+              color: white;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+            }
+    
+            .agent-header {
+                text-align: center;
+                padding-bottom: 20px;
+            }
+    
+            .agent-header h1 {
+                margin: 0;
+                color: #2c3e50;
+            }
+    
+            .agent-header p {
+                font-style: italic;
+                color: #555;
+            }
+    
+            .agent-name {
+                font-size: 1.5rem;
+                color: #333;
+                margin: 5px 0;
+            }
+    
+            .agent-title {
+                font-size: 1rem;
+                color: #777;
+                margin-bottom: 15px;
+            }
+    
+            .agents-row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 20px 0;
+            }
+    
+            .agent-card {
+                background: #fff;
+                border: 2px solid #333; 
+                border-radius: 5px;
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                width: 105%; 
+                box-sizing: border-box;
+                text-align: center;
+                margin: 10px; 
+            }
+    
+            .agent-card img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
+    
+            @media (max-width: 768px) {
+                .agents-row {
+                    flex-direction: column;
+                }
+                .agent-card {
+                    width: 90%; 
+                    margin: 10px auto;
+                }
+            }
+    
+        </style>
+    </head>
+{% endblock head %}
+
+{% block content %}
+    <div class="container">
+        <header class="agent-header">
+            <br><Br>
+            <h1>Our Agents</h1>
+            <p>Please use our referral when buying your next house</p>
+        </header>
+        
+        <div class="agents-row">
+            <a href="https://github.com/AdeebK1129" style="text-decoration: none; color: inherit;">
+                <div class="agent-card">
+                   <img src="{% static 'image/adeeb.png' %}" alt="Adeeb Khan">
+                    <div class="agent-name"> Adeeb Khan</div>
+                    <div class="agent-title">Real Estate Agent</div>
+                    <p> Cornell '28</p>
+                </div>
+            </a>
+        
+            <a href="https://github.com/systamii" style="text-decoration: none; color: inherit;">
+                <div class="agent-card">
+                   <img src="{% static 'image/john.png' %}" alt="John Chandler iii">
+                   <div class="agent-name"> John Chandler iii</div>
+                   <div class="agent-title">Real Estate Agent</div>
+                   <p> Jollibees Enthusiast</p>
+               </div>
+            </a>
+        
+            <a href="https://github.com/jlei40" style="text-decoration: none; color: inherit;">
+               <div class="agent-card">
+                   <img src="{% static 'image/jason.png' %}" alt="Jason Lei">
+                   <div class="agent-name"> Jason Lei</div>
+                   <div class="agent-title">Real Estate Agent</div>
+                   <p> CS Dojo Senpai</p>
+               </div>
+            </a>
+        
+            <a href="https://github.com/xli40" style="text-decoration: none; color: inherit;">
+               <div class="agent-card">
+                   <img src="{% static 'image/sam.png' %}" alt="Samuel Li">
+                  <div class="agent-name"> Samuel Li</div>
+                  <div class="agent-title">Real Estate Agent</div>
+                  <p> He likes cats</p>
+              </div>
+            </a>
+        </div>
+    </div>
+{% endblock content %}
+
+</html>
