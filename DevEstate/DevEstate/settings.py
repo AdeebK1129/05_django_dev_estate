@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'core',
     'listings',
     'management',
-    'users',
     'main',
 ]
 

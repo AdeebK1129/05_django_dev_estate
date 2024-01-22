@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="searchHolder">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Search</span>
+        </div>
+        <input type="text" class="form-control" id="userInput" onkeyup="filterBar()" placeholder="Enter Address..."></input>
+      </div> 
+</div>
 <div class="container mt-4">
     <div class="row">
         {% for property in properties %}
@@ -10,12 +17,10 @@
                 <img class="card-img-top" src="{{ property.imgSrc }}" alt="Property image">
                 <div class="card-body">
                     <h5 class="card-title">{{ property.price|floatformat:2 }}</h5>
-                    <p class="card-text">
-                        {{ property.street_address }}<br>
-                        {{ property.city }}, {{ property.state }} {{ property.zipcode }}<br>
-                        {{ property.country }}<br>
-                        Beds: {{ property.bedrooms }} | Baths: {{ property.bathrooms }}
-                    </p>
+                    <p class="card-text">{{ property.street_address }}</p><br>
+                    <p class="card-text">{{ property.city }}, {{ property.state }} {{ property.zipcode }}</p><br>
+                    <p class="card-text">{{ property.country }}</p><br>
+                        Beds: {{ property.bedrooms }} | Baths: {{ property.bathrooms }} <br><br>
                     <a href="{% url 'listings:property_detail' property.zpid %}" class="btn btn-primary">View Details</a>
 
                 </div>
@@ -26,5 +31,37 @@
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .card-text{
+        display: inline;
+    }
+    .card-img-top{
+        max-height:250px;
+    }
+</style>
+
+<script>
+    function filterBar(){
+        let input = document.getElementById('userInput');
+        let filter = input.value.toUpperCase();
+        let props = document.getElementsByClassName('card');
+        for(i=0; i < props.length; i++){
+            holder = props[i].getElementsByClassName('card-body')
+            for(j=0; j < holder.length; j++){
+               let xd = (holder[j].querySelector('.card-text'));
+               txtValue = xd.textContent || xd.innerText;
+               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                 props[i].style.display = "";
+               } else {
+                 props[i].style.display = "none";
+                 
+               }
+            }
+        }
+    }
+
+        
+</script>
 
 {% endblock content %}

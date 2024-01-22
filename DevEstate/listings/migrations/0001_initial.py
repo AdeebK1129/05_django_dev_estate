@@ -128,8 +128,4 @@ class Migration(migrations.Migration):
                 ('school', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='listings.school')),
             ],
         ),
-<<<<<<< HEAD
     ]
-=======
-    ]
->>>>>>> 1fd27d4fc870c13e369541915502c159c22d2027
