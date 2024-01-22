@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'core/css/styles.css' %}">
+        <link rel="shortcut icon" href="/static/image/Chef_Dev_Logo.png">
+        <title>{% block title %}DevEstate{% endblock %}</title>
+
+        <style>
+            a:link {
+                color: white;
+                display: block;
+                text-align: center;
+                margin-bottom: 10px;
+            }  
+            a:visited {
+                color: white;
+            }
+            a:hover {
+                color: lightblue;
+                text-decoration: underline;
+            }
+            .devestate-logo {
+                display: block;
+                margin: 0 auto;
+                margin-bottom: -20px;
+            }
+            .h4 + h5 {
+                margin-top: -5;
+            }
+        </style>
+
+        
+    {% endblock head %}
+</head>
+
+<body style="background-color: black; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; text-align: center;">
+    <img src="{% static 'image/DevEstateLogo.png' %}" alt="DevEstateLogo" class="devestate-logo">
+    <header >
+        {% load static %}
+        <a href="{% url 'listings:property_list' %}">Listings</a>
+        <p><a href="https://github.com/AdeebK1129/05_django_dev_estate">Our Repository</a></p>
+        <a href="{% url 'main:about_us' %}">About Us</a>
+        <br>
+        <h4> Created by Adeeb Khan, John Chandler iii, Jason Lei, and Samuel Li </h4>
+        <h5> Novillo's Period 9 Software Development </h5>
+
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+
+</html>
