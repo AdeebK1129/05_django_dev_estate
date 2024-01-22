@@ -1,7 +1,11 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
+<<<<<<< HEAD
     <head>        
+=======
+    <head>     {% block head %}      
+>>>>>>> 1fd27d4fc870c13e369541915502c159c22d2027
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,17 +49,61 @@
                   display: block;
                   color: white;
                   text-align: center;
+<<<<<<< HEAD
                   padding: 14px 16px;
+=======
+                  padding: 50px 20px;
+>>>>>>> 1fd27d4fc870c13e369541915502c159c22d2027
                   text-decoration: none;
               }
           </style>
   
+<<<<<<< HEAD
         </head>
     
     
         <body style="background-color: beige; color: black;">
 
 
+=======
+          {% endblock head %} </head>
+    
+    
+        
+        <body style="background-color: beige; color: black;">     {% block body %}
+
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{% url 'main:home' %}">DevEstate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:about_us' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:about_us' %}">    </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'listings:property_list' %}">    Listings</a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="{% url '' %}"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url '' %}">Notebook</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url '' %}"></a>
+                        </li>  {% endcomment %}
+                    </ul>
+                </div>
+            </nav>
+            
+
+>>>>>>> 1fd27d4fc870c13e369541915502c159c22d2027
                 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -66,6 +114,7 @@
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<<<<<<< HEAD
    
    
       <nav>
@@ -79,11 +128,20 @@
     <header>
         <h1>DevEstate</h1>
         {% block content %}
+=======
+      {% endblock body %}
+
+
+    <header>
+                {% block content %}
+        <h1>DevEstate</h1>
+
+>>>>>>> 1fd27d4fc870c13e369541915502c159c22d2027
         
         {% endblock content %}
     </header>
 
 
     </body>
-  <html>
+
 </html>
