@@ -1,6 +1,37 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from .models import Property, PropertyFeatures, PropertyAgent, PropertySchool, PriceHistory, NearbyHomes
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
+from django.views.generic import DeleteView
+from .forms import PropertyForm
+from django.contrib import messages
+
+class PropertyCreateView(CreateView):
+    model = Property
+    form_class = PropertyForm
+    template_name = 'listings/property_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('listings:property_detail', kwargs={'zpid': self.object.zpid})
+
+class PropertyUpdateView(UpdateView):
+    model = Property
+    form_class = PropertyForm
+    template_name = 'listings/property_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('listings:property_detail', kwargs={'zpid': self.object.zpid})
+    
+
+
+class PropertyDeleteView(DeleteView):
+    model = Property
+    success_url = reverse_lazy('listings:property_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.add_message(request, messages.SUCCESS, 'Property has been deleted')
+        return super().delete(request, *args, **kwargs)
 
 def property_list(request):
     properties = Property.objects.all()

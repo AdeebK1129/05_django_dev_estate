@@ -1,4 +1,7 @@
 from django.db import models
+import random
+from django.db.models import Max
+
 
 class Property(models.Model):
     zpid = models.IntegerField(primary_key=True)
@@ -29,6 +32,18 @@ class Property(models.Model):
 
     def __str__(self):
         return f"[{self.zpid}, {self.imgSrc}]"
+    
+    def save(self, *args, **kwargs):
+        if self.zpid is None:
+            # Generate a random zpid. Adjust range as needed for your use case.
+            max_id = Property.objects.aggregate(max_zpid=Max('zpid'))['max_zpid']
+            self.zpid = (max_id if max_id is not None else 0) + random.randint(1, 100)
+
+            # Make sure the generated zpid does not already exist.
+            while Property.objects.filter(zpid=self.zpid).exists():
+                self.zpid += random.randint(1, 100)
+        
+        super().save(*args, **kwargs)
 
 class PropertyFeatures(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)

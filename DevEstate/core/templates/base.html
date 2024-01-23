@@ -71,20 +71,19 @@
                             <a class="nav-link" href="{% url 'main:about_us' %}">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'main:about_us' %}">    </a>
+                            <a class="nav-link" href="{% url 'listings:property_list' %}">Listings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'listings:property_list' %}">    Listings</a>
+                            <a class="nav-link" href="{% url 'listings:property_create' %}">Create New Listing</a>
                         </li>
-                        {% comment %} <li class="nav-item">
-                            <a class="nav-link" href="{% url '' %}"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url '' %}">Notebook</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url '' %}"></a>
-                        </li>  {% endcomment %}
+                        {% if property and property.zpid %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'listings:property_update' property.zpid %}">Edit Listing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'listings:property_delete' property.zpid %}">Delete Listing</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
