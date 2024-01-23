@@ -15,7 +15,7 @@ In order to use the API, we followed these steps:
 For the sake of safety and because we are paying for our API access, we have used .git ignore to hide our API host and key from public viewers. If necessary, we can email you our key.
 
 ----------PROJECT SETUP INSTRUCTIONS------------------
-1. Go to insights -> network -> tip of adeeb branch and clone the repo (this is because there have been some serious errors revolving around git which has left our primary branch to become adeeb. We have also had difficulties merging adeeb into main)
+1. Pull directly from the origin of main
 2. Set up virtual environment 
 3. Install psycopg2, django onto the virtual environment if not already installed. If psycopg2 fails, try the binary version. 
 4. Create secrets.json file in DevEstate app and enter in your database information
