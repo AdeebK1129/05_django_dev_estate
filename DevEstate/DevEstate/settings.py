@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'listings',
-    'management',
     'main',
 ]
 
