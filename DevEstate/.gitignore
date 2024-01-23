@@ -1,0 +1,9 @@
+*.pyc
+.DS_Store
+__pycache__/
+DevEstate/DevEstate/secrets.json
+env_3.11.5/
+DevEstate/core/migrations/__pycache__/__init__.cpython-311.pyc
+DevEstate/listings/migrations/__pycache__/0001_initial.cpython-311.pyc
+DevEstate/listings/migrations/__pycache__/__init__.cpython-311.pyc
+DevEstate/main/migrations/__pycache__/__init__.cpython-311.pyc
